@@ -68,8 +68,8 @@ struct SImage *loadImageFromFile(const char *filename) {
 
     for (uint32_t i = 0; i < nPixelsCount; i++)
         fread(pImage->pPixels + i, pImage->pHeaderDIP->nNumberOfBitsPerPixels / 8, 1, pFile);
-        // fread(pImage->pPixels + i, sizeof(struct SPixel), 1, pFile);
 
+    fclose(pFile);
     return pImage;
 }
 
