@@ -11,7 +11,8 @@ void showHelp();
 bool endsWith(const char *string, const char *suffix);
 
 int main(int argc, char *argv[]) {
-    const char *input = NULL, *output = "output.bmp";
+    const char *input = NULL;
+    const char *output = "output.bmp";
 
     int opt;
     const char *options = "-:o:h";
@@ -25,6 +26,8 @@ int main(int argc, char *argv[]) {
                 break;
             case 1:
                 input = optarg;
+                break;
+            default:
                 break;
         }
     }

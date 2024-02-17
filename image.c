@@ -63,7 +63,7 @@ void clearImage(struct SImage *pImage) {
     free(pImage);
 }
 
-void saveImageToFile(const char *outputFilename, struct SImage *image) {
+void saveImageToFile(const char *outputFilename, const struct SImage *const image) {
     assert(outputFilename != NULL && image != NULL);
     assert(image->pHeaderBMP != NULL);
     assert(image->pHeaderDIP != NULL);

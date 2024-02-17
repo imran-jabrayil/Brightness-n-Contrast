@@ -22,7 +22,10 @@ struct SImageHeaderDIP {
 } __attribute__((packed));
 
 struct SPixel {
-    uint8_t r, g, b, a;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+    uint8_t a;
 } __attribute__((packed));
 
 struct SImage {
@@ -38,6 +41,6 @@ struct SImage *loadImageFromFile(const char *filename);
 
 void clearImage(struct SImage *pImage);
 
-void saveImageToFile(const char *outputFilename, struct SImage *image);
+void saveImageToFile(const char *outputFilename, const struct SImage *const image);
 
 #endif
