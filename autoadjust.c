@@ -1,9 +1,8 @@
 #include "autoadjust.h"
-
+#include <assert.h>
 
 void imageAutoadjust(struct SImage *image) {
-    if (image == NULL || image->pPixels == NULL)
-        return;
+    assert(image != NULL && image->pPixels != NULL);
     
     uint8_t redMin = image->pPixels[0].r;
     uint8_t greenMin = image->pPixels[0].g;
@@ -14,20 +13,14 @@ void imageAutoadjust(struct SImage *image) {
     uint8_t blueMax = image->pPixels[0].b;
 
     for (uint32_t i = 1; i < image->nPixelsCount; i++) {
-        if (redMin > image->pPixels[i].r)
-            redMin = image->pPixels[i].r;
-        if (redMax < image->pPixels[i].r)
-            redMax = image->pPixels[i].r;
+        if (redMin > image->pPixels[i].r)   redMin   = image->pPixels[i].r;
+        if (redMax < image->pPixels[i].r)   redMax   = image->pPixels[i].r;
 
-        if (greenMin > image->pPixels[i].g)
-            greenMin = image->pPixels[i].g;
-        if (greenMax < image->pPixels[i].g)
-            greenMax = image->pPixels[i].g;
+        if (greenMin > image->pPixels[i].g) greenMin = image->pPixels[i].g;
+        if (greenMax < image->pPixels[i].g) greenMax = image->pPixels[i].g;
 
-        if (blueMin > image->pPixels[i].b)
-            blueMin = image->pPixels[i].b;
-        if (blueMax < image->pPixels[i].b)
-            blueMax = image->pPixels[i].b;
+        if (blueMin > image->pPixels[i].b)  blueMin  = image->pPixels[i].b;
+        if (blueMax < image->pPixels[i].b)  blueMax  = image->pPixels[i].b;
     }
 
     redMax -= redMin;

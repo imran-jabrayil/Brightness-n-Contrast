@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <getopt.h>
 #include <stdint.h>
+#include <assert.h>
 #include "image.h"
 #include "autoadjust.h"
 
@@ -62,16 +63,13 @@ void showHelp() {
 }
 
 bool endsWith(const char *string, const char *suffix) {
-    if (string == NULL && suffix == NULL)
-        return true;
-    if (string == NULL || suffix == NULL)
-        return false;
+    if (string == NULL && suffix == NULL) return true;
+    if (string == NULL || suffix == NULL) return false;
 
-    uint32_t stringLen = strlen(string);
-    uint32_t suffixLen = strlen(suffix);
+    uint32_t stringLen = strnlen(string, 256);
+    uint32_t suffixLen = strnlen(suffix, 4);
 
-    if (suffixLen > stringLen)
-        return false;
+    if (suffixLen > stringLen) return false;
     
     return strncmp(string + stringLen - suffixLen, suffix, suffixLen) == 0;
 }
